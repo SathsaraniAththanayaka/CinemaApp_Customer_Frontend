@@ -1,0 +1,79 @@
+.searchBar{
+    position: absolute;
+    top: 15%;
+    left: 80%;
+    transform: translate(-50%,-50%);
+    z-index: 101;
+    
+}
+body{
+    background-color: rgb(209,204,204);
+}
+.templateContainer{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 101;
+    margin: 5% 0;
+}
+.templateContainer > .searchInput_Container{
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+.templateContainer > .searchInput_Container input{
+    width: 50%;
+    padding: 10px;
+    outline: none;
+}
+.templateContainer .template_Container{
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.templateContainer .template_Container .template{
+    
+    margin: 30px;
+    
+}
+.templateContainer .template_Container .template img{
+    height: 1000px;
+    width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.searchForm{
+    font-family: "Poppins", sans-serif;
+    padding: 0.8px 15px;
+    border-radius: 6px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255,0.2);
+}
+
+.searchButton{
+    padding: 0.8px 20px;
+    border: 2px solid #fff;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255,0.2);
+}
+
+.searchButton.active{
+    transform: scale(0.98)
+  }
+ 
+.icon{
+    color: #fff;
+}
+
