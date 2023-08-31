@@ -4,6 +4,9 @@ import { Link, useParams } from 'react-router-dom';
 import data from "../../Pages/SearchMovie/Movies.json";
 import "./ReserveMovie.css"
 import NavBar from '../../components/NavBar/NavBar';
+import { FetchSchedules } from '../../Services/FetchSchedules';
+
+
 export default function ReserveMovie() {
     const { id } = useParams(); // Get the movie ID from the URL parameter
     const [movie, setMovie] = useState(null);
@@ -12,12 +15,12 @@ export default function ReserveMovie() {
        // Simulate an asynchronous fetch from an API
     const fetchMovieDetails = async () => {
         try {
-          // Add a delay to simulate a real API call
+          const scheduleData = await FetchSchedules(id);
           await new Promise(resolve => setTimeout(resolve, 100));
           
-          // Fetch movie details based on the ID
-          const selectedMovie = data.find(item => item.id === parseInt(id));
-          setMovie(selectedMovie);
+         
+          // const selectedMovie = movieData.find(item => item.movieid === parseInt(id));
+           setMovie(scheduleData);
         } catch (error) {
           console.error(error);
           
@@ -34,20 +37,20 @@ export default function ReserveMovie() {
     <div class = "reserveBack">
         
     <div className="reserve-container">
-      <h2 className="reserve-title">Available Places and Times for {movie.title}</h2>
-      {movie.places.map((place, placeIndex) => (
-        <div key={placeIndex} className="place-container">
-          <h3 className="place-name">{place.name}</h3>
-          {place.schedule.map((scheduleItem, scheduleIndex) => (
-            <div key={scheduleIndex} className="schedule-container">
-              <p className="schedule-date">Date: {scheduleItem.date}</p>
+      <h2 className="reserve-title">Reserve your show</h2>
+      {movie.theaters.map((theater, theaterIndex) => (
+        <div key={theaterIndex} className="place-container">
+          <h3 className="place-name">{theater.theaterName}</h3>
+          {theater.dates.map((dateItem, dateIndex) => (
+            <div key={dateIndex} className="schedule-container">
+              <p className="schedule-date">Date: {dateItem.date}</p>
               <div className="time-buttons">
-                {scheduleItem.times.map((time, timeIndex) => (
+                {dateItem.times.map((timeObj, timeIndex) => (
                   <Link
                     key={timeIndex}
-                    to={`/seat-selection/${place.name}/${scheduleItem.date}/${time}`}
+                    to={`/seat-selection/${theater.theaterName}/${dateItem.date}/${timeObj.time}/${timeObj.scheduleid}`}
                   >
-                    <button className="time-button">{time}</button>
+                    <button className="time-button">{timeObj.time}</button>
                   </Link>
                 ))}
               </div>

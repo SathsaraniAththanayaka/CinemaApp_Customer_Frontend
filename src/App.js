@@ -29,7 +29,7 @@ function App() {
               <Route path="/movie/:id" element={<MovieDetailsPage/>}/>
               <Route path="/payment" element={<Payment/>}/>
               <Route path="/available-schedule/:id" element={<ReserveMovie/>}/>
-              <Route path="/seat-selection/:name/:date/:time" element={<SeatSelection/>}/>
+              <Route path="/seat-selection/:name/:date/:time/:id" element={<SeatSelection/>}/>
               <Route path="/payment" element={<Payment/>}/>
             </Routes>
         </BrowserRouter>

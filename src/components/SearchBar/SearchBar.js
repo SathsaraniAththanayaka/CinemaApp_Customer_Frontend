@@ -2,12 +2,23 @@ import React from 'react'
 import "./SearchBar.css"
 import * as AiIcons from 'react-icons/ai'
 import data from "../../Pages/SearchMovie/Movies.json"
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { Card, Input } from 'antd';
+import {FetchMovies} from "../../Services/FetchMovies"
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState(""); 
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchAndSetMovies = async () => {
+      const movieData = await FetchMovies();
+      setMovies(movieData);
+    };
+
+    fetchAndSetMovies();
+  }, []);
   return (
     <div>
         <form>
@@ -20,7 +31,7 @@ export default function SearchBar() {
         </div>
         <div className="template_Container">
           {
-            data 
+            movies 
               .filter((val) => {
                 if(searchTerm == ""){
                   return val;
@@ -30,7 +41,7 @@ export default function SearchBar() {
               })
               .map((val) => {
                 return(
-                  <Link to={`/movie/${val.id}`} key={val.id} className="template">
+                  <Link to={`/movie/${val.movieid}`} key={val.movieid} className="template">
                   <Card // Use Ant Design Card component
                     cover={<img src={val.image} alt="" />}
                     title={val.title}

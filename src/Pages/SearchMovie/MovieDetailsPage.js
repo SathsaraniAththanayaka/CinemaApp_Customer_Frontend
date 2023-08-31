@@ -2,22 +2,25 @@ import React from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import data from "../../Pages/SearchMovie/Movies.json";
+import { FetchMovies } from '../../Services/FetchMovies';
 import "./MovieDetailsPage.css"
 
 export default function MovieDetailsPage() {
     const { id } = useParams(); // Get the movie ID from the URL parameter
     const [movie, setMovie] = useState(null);
+    const [movies, setMovies] = useState([]);
+
 
     useEffect(() => {
-       // Simulate an asynchronous fetch from an API
+       
     const fetchMovieDetails = async () => {
         try {
-          // Add a delay to simulate a real API call
-          await new Promise(resolve => setTimeout(resolve, 100));
+          const movieData = await FetchMovies();
+          setMovies(movieData);
+          //await new Promise(resolve => setTimeout(resolve, 100));
           
-          // Fetch movie details based on the ID
-          const selectedMovie = data.find(item => item.id === parseInt(id));
+          
+          const selectedMovie = movieData.find(item => item.movieid === parseInt(id));
           setMovie(selectedMovie);
         } catch (error) {
           console.error(error);

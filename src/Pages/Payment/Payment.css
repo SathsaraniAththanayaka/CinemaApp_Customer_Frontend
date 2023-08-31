@@ -1,64 +1,80 @@
+
 .payment-container {
   position: absolute;
-  top: 15%;
-  left:25%;
+  top:25%;
+  left:35%;
   z-index: 101;
   background-color: white;
-  width: 450px;
+  width: 400px;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .payment-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-bottom: 20px;
 }
 
-.amount{
-  padding: 6px 24px;
-  border: 2px solid #28d1bb;
-  background: transparent;
-  border-radius: 6px;
+.amount {
+  margin: 10px 0;
+  font-size: 18px;
+  border: 2px solid red;
+  display: inline-block; /* Make the element inline-block */
+  padding: 6px 24px; /* Add some padding for spacing */
+  border-radius: 6px; /* Add border radius for a rounded appearance */
   cursor: pointer;
   align-items: center;
 }
 
-select {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+.method-label {
+  margin: 20px 0 10px;
+  font-size: 16px;
+  color: #313131;
 }
-.payment-methods {
+
+.payment-buttons {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 10px;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
+  padding: 12px;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 0 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #dddbdb;
+  color: #444;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
-button:hover {
+.payment-option:hover {
   background-color: #0056b3;
+  color: white;
 }
 
 .selected {
   background-color: #0056b3;
+  color: white;
 }
 
+.payment-icon {
+  width: 28px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/* Other styles can remain the same */
