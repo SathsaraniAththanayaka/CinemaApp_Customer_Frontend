@@ -1,15 +1,18 @@
 import React from 'react'
 import axios from 'axios';
 
-const BASE_URL = "http://localhost:8090/customer/kafka/bookings";
+const BASE_URL = "http://localhost:8090/customer/bookings";
 
-export const ReserveConfirmation = async (showid,seatCategory,seatNo) => {
+export const ReserveConfirmation = async (customerid,showid,seatCategory,noOfSeats) => {
     try {
-      await axios.post(BASE_URL,{
+      const response = await axios.post(BASE_URL,{
+        customerid,
         showid,
         seatCategory,
-        seatNo
+        noOfSeats
       });
+
+      return response.data;
       
     } catch (error) {
       console.error(error);

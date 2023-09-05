@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import { IconContext } from 'react-icons';
 import {useState} from 'react';
+import { AuthProvider } from '../../Auth/AuthContext';
 
 export default function ({userId}) {
 

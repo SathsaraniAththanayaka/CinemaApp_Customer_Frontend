@@ -1,11 +1,13 @@
-import {  useState } from "react";
+import {  useState ,useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "./Login.css"
 import NavBar from "../../components/NavBar/NavBar";
 import {setToSession,getFromSession} from "../../Handlers/DataHandler";
+import { useAuth } from "../../Auth/AuthContext";
 
 function Login() {
+    const { loginAuth,authenticated } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -17,6 +19,7 @@ function Login() {
     
     async function login(event) {
         event.preventDefault();
+        
         try {
           await axios.post("http://localhost:8090/customer/login", {
             email: email,
@@ -31,13 +34,15 @@ function Login() {
              } 
              else if(res.data.message === "Login Success")
              { 
+                
+               
                 alert("Login successful");
+                setToSession('id',res.data.id);
                 setToSession('username',email);
                 setToSession('password',password);
-                console.log(getFromSession('username'));
-                console.log(getFromSession('password'));
-                console.log(res.data.id);
-                navigate(`/home/${res.data.id}`);
+                loginAuth();
+                
+                
              } 
               else 
              { 
@@ -51,8 +56,19 @@ function Login() {
          catch (err) {
           alert(err);
         }
+
+       
       
       }
+      useEffect(() => {
+        console.log("useEffect triggered");
+        if (authenticated) {
+          console.log(authenticated);
+          navigate(`/home/${getFromSession('id')}`)
+        }
+      }, [authenticated]);
+     
+     
       const handleEmailBlur = () => {
         if (email.trim() === "") {
           setEmailError("Email is required");

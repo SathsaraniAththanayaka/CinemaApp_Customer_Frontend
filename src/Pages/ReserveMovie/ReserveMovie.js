@@ -48,7 +48,7 @@ export default function ReserveMovie() {
                 {dateItem.times.map((timeObj, timeIndex) => (
                   <Link
                     key={timeIndex}
-                    to={`/seat-selection/${theater.theaterName}/${dateItem.date}/${timeObj.time}/${timeObj.scheduleid}`}
+                    to={`/seat-selection/${theater.theaterid}/${theater.theaterName}/${dateItem.date}/${timeObj.time}/${timeObj.scheduleid}`}
                   >
                     <button className="time-button">{timeObj.time}</button>
                   </Link>

@@ -3,10 +3,12 @@ import "./Payment.css"
 import NavBar from '../../components/NavBar/NavBar';
 import visaImage from '../../images/visaImage.jpg'
 import paypalImage from '../../images/paypalImage.jpg'
+import { useParams, useNavigate} from 'react-router-dom';
 
 export default function Payment() {
   const [selectedMethod, setSelectedMethod] = useState(null);
-
+  const { bookingid,totalPrice} = useParams();
+  const navigate = useNavigate();
   
   const handlePayment = (method) => {
     setSelectedMethod(method);
@@ -16,7 +18,10 @@ export default function Payment() {
     } else if (method === 'paypal') {
       alert('Redirecting to PayPal payment...');
       
-    }
+    }else if (method === 'cash') {
+      alert(`Your reservation (ID: ${bookingid}) has been recorded. Please pay in cash when you arrive at the venue.`);
+      navigate(`/thankyou/${bookingid}`)
+    } 
   };
 
   return (
@@ -25,14 +30,14 @@ export default function Payment() {
       <div className="payment-container">
         <h1>Complete Your Payment</h1>
         <div className="payment-details">
-          <p className="amount">Total Amount: Rs.100</p>
+          <p className="amount">Total Amount: Rs.{totalPrice}</p>
           <p className="method-label">Select Payment Method:</p>
           <div className="payment-buttons">
           <button
-              className={`payment-option ${selectedMethod === 'paypal' ? 'selected' : ''}`}
-              onClick={() => handlePayment('paypal')}
+              className={`payment-option ${selectedMethod === 'cash' ? 'selected' : ''}`}
+              onClick={() => handlePayment('cash')}
             >
-              <img src={paypalImage} alt="PayPal" className="payment-icon" />
+              <img src={paypalImage} alt="cash" className="payment-icon" />
               Cash
             </button>
             <button

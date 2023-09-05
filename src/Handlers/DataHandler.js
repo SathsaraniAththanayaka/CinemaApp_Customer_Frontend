@@ -1,6 +1,7 @@
 import React from 'react';
 
     const SESSION_DATA = {
+        id:'id',
         username: 'email',
         password: 'password'
     };
