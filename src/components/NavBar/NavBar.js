@@ -12,7 +12,7 @@ function NavBar(){
               
             </li>
           </ul>
-          <a href="http://localhost:3000/register">
+          <a href="http://localhost:3001/register">
           <button class = "button">Contact us</button>
           </a>
           

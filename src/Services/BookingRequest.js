@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios';
+import { getFromSession } from '../Handlers/DataHandler';
 
-const BASE_URL = "http://localhost:8090/customer/kafka/bookings";
+const BASE_URL = "http://localhost:8080/customer/kafka/bookings";
 
 export const BookingRequest = async (bookingID,customerID,name,customerEmail,showId,seatCategory,noOfBookedSeats) => {
     try {
@@ -12,6 +13,11 @@ export const BookingRequest = async (bookingID,customerID,name,customerEmail,sho
         customerEmail,
         showId,seatCategory,
         noOfBookedSeats
+      },{
+        auth: {
+          username: getFromSession('username'), 
+          password: getFromSession('password'), 
+        },
       });
       
     } catch (error) {

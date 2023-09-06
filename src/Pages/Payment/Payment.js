@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import visaImage from '../../images/visaImage.jpg'
 import paypalImage from '../../images/paypalImage.jpg'
 import { useParams, useNavigate} from 'react-router-dom';
+import { getFromSession } from '../../Handlers/DataHandler';
 
 export default function Payment() {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -20,7 +21,8 @@ export default function Payment() {
       
     }else if (method === 'cash') {
       alert(`Your reservation (ID: ${bookingid}) has been recorded. Please pay in cash when you arrive at the venue.`);
-      navigate(`/thankyou/${bookingid}`)
+      //navigate(`/thankyou/${bookingid}`)
+      navigate(`/home/${getFromSession('id')}`)
     } 
   };
 

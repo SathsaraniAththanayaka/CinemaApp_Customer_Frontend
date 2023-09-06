@@ -21,7 +21,7 @@ function Register() {
         event.preventDefault();
         try {
           if(password === confirmPassword){
-            await axios.post("http://localhost:8090/customer/register", {
+            await axios.post("http://localhost:8080/customer/register", {
               customerName: customername,
               email: email, 
               password: password,
@@ -157,7 +157,7 @@ function Register() {
 
         <div>
             <p>Already have an account?&nbsp;
-              <a href = "http://localhost:3000/">Sign In</a>
+              <a href = "http://localhost:3001/">Sign In</a>
             </p>
           </div>
         </div>

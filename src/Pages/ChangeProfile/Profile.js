@@ -16,7 +16,7 @@ function Profile() {
     const handleUpdateProfile = async () => {
       try {
         if(password === confirmPassword){
-          const response = await axios.put("http://localhost:8090/customer/edit", {
+          const response = await axios.put("http://localhost:8080/customer/edit", {
             customerid:id,
             customerName: name,
             email: email, 

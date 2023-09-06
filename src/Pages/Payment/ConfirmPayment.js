@@ -36,7 +36,7 @@ export default function ConfirmPayment() {
           navigate(`/payment/${bookingid}/${totalPrice}`);
         }
         else{
-          alert("Reservation denied");
+          alert("Reservation denied! Please reserve another show proceed...");
         }
         
       };

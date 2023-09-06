@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios';
+import { getFromSession } from '../Handlers/DataHandler';
 
-const BASE_URL = "http://localhost:8090/customer/bookings";
+const BASE_URL = "http://localhost:8080/customer/bookings";
 
 export const ReserveConfirmation = async (customerid,showid,seatCategory,noOfSeats) => {
     try {
@@ -10,6 +11,11 @@ export const ReserveConfirmation = async (customerid,showid,seatCategory,noOfSea
         showid,
         seatCategory,
         noOfSeats
+      },{
+        auth: {
+          username: getFromSession('username'), 
+          password: getFromSession('password'), 
+        },
       });
 
       return response.data;

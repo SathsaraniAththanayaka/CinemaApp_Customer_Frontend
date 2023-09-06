@@ -21,7 +21,7 @@ function Login() {
         event.preventDefault();
         
         try {
-          await axios.post("http://localhost:8090/customer/login", {
+          await axios.post("http://localhost:8080/customer/login", {
             email: email,
             password: password,
             }).then((res) => 
@@ -116,7 +116,7 @@ function Login() {
                   />
                    {password === "" && <small className="text-danger">{passwordError}</small>}
                    <div>
-                   <a href = "http://localhost:3000/resetpwd" class = "forgotPassword">Forgot Password?</a>
+                   <a href = "http://localhost:3001/resetpwd" class = "forgotPassword">Forgot Password?</a>
                    </div>
                  
                 </div>
@@ -129,7 +129,7 @@ function Login() {
           
             <div>
               <p>Don't you have an account?&nbsp;
-               <a href = "http://localhost:3000/register">Sign Up</a>
+               <a href = "http://localhost:3001/register">Sign Up</a>
               </p>
             </div>
           </div>
